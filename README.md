@@ -1,6 +1,6 @@
 # boxo
 
-> A puzzel game of boxes
+> A puzzel game of boxes using vue.js and svg
 
 ## Game Play
 
