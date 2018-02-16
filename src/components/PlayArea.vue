@@ -16,6 +16,7 @@ import Box from './Box'
 
 
 export default {
+  props: ['clevel'],
   components: {
     Box
   },
@@ -27,9 +28,22 @@ export default {
       mouseClickedX: null
     }
   },
+  watch: {
+    'level.boxes'(newVal, oldVal) {
+      if(this.level.boxes === 0) {
+        this.$emit('completed')
+      }
+    },
+    'clevel'(newVal, oldVal) {
+     let level = Engine.getLevel(Stages, this.clevel);
+     let boxes = Engine.getBoxes(level);
+    
+      this.level = level;
+      this.boxes = boxes;
+    }
+  },
   methods: {
     boxSelected(bd) {
-      console.log(bd.position.row, bd.position.col, bd.index);
       this.selectedBox = bd;
     },
     mouseMoving(event) {      
@@ -53,18 +67,14 @@ export default {
     mouseReleased() {
       this.selectedBox = null;
       this.mouseClickedX = null;
-            
-      if(this.level.boxes === 0) {
-        this.$emit('completed')
-      }
     }
-  },
+  },  
   created () {     
-     let level = Engine.getLevel(Stages, 1)
-     let boxes = Engine.getBoxes(level)
+     let level = Engine.getLevel(Stages, this.clevel);
+     let boxes = Engine.getBoxes(level);
     
-      this.level = level
-      this.boxes = boxes
+      this.level = level;
+      this.boxes = boxes;
   }
 }
 </script>

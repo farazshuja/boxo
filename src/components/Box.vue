@@ -1,7 +1,7 @@
 <template>
   <!--rect @mousedown="boxSelected()" :x="x" :y="y" stroke-width=".5" :stroke="stroke" :fill="fill" :width="width" :height="height" /-->
     <transition 
-      name="bounce">
+      name="fade">
         <g @mousedown="boxSelected()" :transform="'translate(' + x + ', ' + y + ')'">
           <path :class="boxClass" :d="d" :key="boxdata.id"/>
         </g>

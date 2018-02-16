@@ -1,10 +1,10 @@
 <template>
   <div id="app" class="container">
-    <menu-bar></menu-bar>
+    <menu-bar :level="currentLevel"></menu-bar>
     <div class="app-stage-sec">
-      <play-area @completed="completed"></play-area>
+      <play-area :clevel="currentLevel" @completed="completed"></play-area>
     </div>
-    <done-modal :show="stageCompleted"></done-modal>
+    <done-modal :show="stageCompleted" :clevel="currentLevel" @nextlevel="nextLevel"></done-modal>
   </div>
 </template>
 
@@ -22,12 +22,17 @@ export default {
   },
   data () {
     return {
-      stageCompleted: false
+      stageCompleted: false,
+      currentLevel: 1
     }
   },
   methods: {
     completed() {
       this.stageCompleted = true;
+    },
+    nextLevel() {
+      this.stageCompleted = false;
+      this.currentLevel++;
     }
   }
 }
@@ -51,27 +56,41 @@ export default {
   }
 
   /* custom animations */
-  .bounce-enter-active {
-    animation: bounce-in .3s;
+  .fade-enter-active {
+    animation: fade-in .3s;
   }
-  .bounce-leave-active {
-    animation: bounce-in .3s reverse;
+  .fade-leave-active {
+    animation: fade-in .3s reverse;
   }
-  @keyframes bounce-in {
+  @keyframes fade-in {
     0% {
-      /*transform: scale(0);*/
       opacity: 0;
       fill: #fff;      
     }
     50% {
-      /*transform: scale(1.20);*/
       opacity: .5;
       fill: #999;
     }
     100% {
-      /*transform: scale(1);*/
       opacity: 1;
       fill: #000;
     }
-  }  
+  }
+  .bounce-enter-active {
+  animation: bounce-in .7s;
+}
+.bounce-leave-active {
+  animation: bounce-in .7s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.20);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 </style>

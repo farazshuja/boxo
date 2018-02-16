@@ -91,6 +91,9 @@ let Engine = {
     Object.keys(adjacentBoxes).forEach((b) => {            
       if(box.type === adjacentBoxes[b].type) {        
         level.map[adjacentBoxes[b].position.row][adjacentBoxes[b].position.col] = 0;
+        if(adjacentBoxes[b].type > 1) {
+          level.boxes--;
+        }
         adjacentBoxes[b].type = 0;
         anyOneBlasted = true;
       }
@@ -98,8 +101,11 @@ let Engine = {
 
     if(anyOneBlasted) {
       level.map[box.position.row][box.position.col] = 0;
+      if(box.type > 1) {
+        level.boxes--;
+      }
       box.type = 0;
-    }    
+    }
   },
   // get the box at row-col, find if its lower box is empty free fall it
   // call the same for upper box until there is no box over or there is a wall
@@ -109,7 +115,6 @@ let Engine = {
       return;
     }
     //free fall this box
-    console.log('free fall' + box.type);
     setTimeout(() => {
       box.position.row++;        
       this.updateLevelsMap(level, (box.position.row-1), box.position.col, box.position.row, box.position.col); //update level's data
