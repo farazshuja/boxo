@@ -1,18 +1,7 @@
 # boxo
 
-> A puzzel game of boxes
+> A puzzel game of boxes using vue.js and svg
 
-## Build Setup
+## Game Play
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![Alt Text](http://unirazz.com/share/game-play.gif)
