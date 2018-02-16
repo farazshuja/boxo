@@ -1,7 +1,7 @@
 {
   "name": "boxo",
   "description": "A puzzel game of boxes",
-  "version": ".6.0",
+  "version": "0.6.0",
   "author": "Faraz Shuja <farazshuja@gmail.com>",
   "license": "MIT",
   "private": true,
