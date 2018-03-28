@@ -97,7 +97,9 @@ export default {
   },
   methods: {
     boxSelected() {
-      this.$emit('boxSelected')
+      if (this.boxdata.type != 1) {
+        this.$emit('boxSelected')
+      }
     }    
   }
 }
